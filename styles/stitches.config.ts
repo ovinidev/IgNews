@@ -71,7 +71,8 @@ export const {
       3: '1.8rem', 
       4: '2rem',
       5: '2.4rem', 
-      6: '7.2rem',
+      6: '5.4rem',
+      7: '7.2rem',
     },
 
     fonts: {
