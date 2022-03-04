@@ -1,10 +1,8 @@
-/* eslint-disable max-len */
-/* eslint-disable require-jsdoc */
 import Document, {
   Html, Head, Main, NextScript, DocumentContext,
 } from 'next/document';
 
-import {getCssText} from '../../styles/stitches.config';
+import { getCssText } from '../../styles/stitches.config';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -18,7 +16,7 @@ export default class MyDocument extends Document {
       <Html lang="pt-BR">
         <Head>
           <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-          <style id="stitches" dangerouslySetInnerHTML={{__html: getCssText()}} />
+          <style id="stitches" dangerouslySetInnerHTML={{ __html: getCssText() }} />
         </Head>
         <body>
           <Main />

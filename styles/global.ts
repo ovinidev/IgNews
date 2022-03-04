@@ -1,4 +1,4 @@
-import {globalCss} from './stitches.config';
+import { globalCss } from './stitches.config';
 
 export const globalStyles = globalCss({
   '*': {
@@ -7,11 +7,11 @@ export const globalStyles = globalCss({
     boxSizing: 'border-box',
   },
 
-  'body': {
+  body: {
     webkitFontSmoothing: 'antialiased',
   },
 
-  'html': {
+  html: {
     fontSize: 10,
     scrollBehavior: 'smooth',
   },
@@ -22,11 +22,11 @@ export const globalStyles = globalCss({
   'h1, h2, h3, h4, h5, h6, strong': {
   },
 
-  'button': {
+  button: {
     cursor: 'pointer',
   },
 
-  ['disabled']: {
+  disabled: {
     opacity: 0.6,
     cursor: 'not-allowed',
   },
