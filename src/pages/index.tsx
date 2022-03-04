@@ -3,7 +3,6 @@ import { ThemeProvider } from '../../styles';
 import { globalStyles } from '../../styles/global';
 
 import { dark } from '../../styles/themes/dark';
-import { light } from '../../styles/themes/light';
 
 const Home: NextPage = () => (
   <ThemeProvider className={dark}>
