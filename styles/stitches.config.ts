@@ -1,10 +1,10 @@
-import { createStitches } from '@stitches/react';
+import {createStitches} from '@stitches/react';
 
 export const {
   styled,
   globalCss,
   createTheme,
-  getCssText
+  getCssText,
 } = createStitches({
   utils: {
     // Abbreviated margin properties
@@ -51,7 +51,7 @@ export const {
   media: {
     bp1: '(max-width: 375px)',
     bp2: '(max-width: 390px)',
-    bp3: '(max-width: 414px)'
+    bp3: '(max-width: 414px)',
   },
   theme: {
     colors: {
@@ -68,15 +68,15 @@ export const {
     fontSizes: {
       1: '1.4rem',
       2: '1.6rem',
-      3: '1.8rem', 
+      3: '1.8rem',
       4: '2rem',
-      5: '2.4rem', 
+      5: '2.4rem',
       6: '5.4rem',
       7: '7.2rem',
     },
 
     fonts: {
-      primary: ''
+      primary: '',
     },
     fontWeights: {},
     lineHeights: {

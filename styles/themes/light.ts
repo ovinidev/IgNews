@@ -1,4 +1,4 @@
-import { createTheme } from "../stitches.config";
+import {createTheme} from '../stitches.config';
 
 export const light = createTheme({
   colors: {
@@ -10,4 +10,4 @@ export const light = createTheme({
     shape: '#1F2729',
     background: '#121414',
   },
-})
+});
