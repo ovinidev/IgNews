@@ -7,15 +7,14 @@ export const SignIn = () => {
 
   return userLogged ? (
     <Container type="button">
-      <FaGithub />
-      Sign in with GitHub
+      <FaGithub color="#04D361" />
+      tiagoluchtenberg
+      <FiX />
     </Container>
   ) : (
     <Container type="button">
-      <FaGithub />
-      tiagoluchtenberg
-      <FiX />
-
+      <FaGithub color="#EBA417" />
+      Sign in with GitHub
     </Container>
   );
 };
