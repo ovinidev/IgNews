@@ -1,13 +1,14 @@
 import type { NextPage } from 'next';
-import { ThemeProvider } from '../../styles';
-import { globalStyles } from '../../styles/global';
-
-import { dark } from '../../styles/themes/dark';
+import Head from 'next/head';
+import { globalStyles } from '../styles/global';
 
 const Home: NextPage = () => (
-  <ThemeProvider className={dark}>
+  <>
+    <Head>
+      <title>Início ig.News</title>
+    </Head>
     {globalStyles()}
-  </ThemeProvider>
+  </>
 );
 
 export default Home;

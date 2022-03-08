@@ -32,17 +32,6 @@ export const {
       marginBottom: value,
     }),
 
-    // A property for applying width/height together
-    size: (value: string | number) => ({
-      width: value,
-      height: value,
-    }),
-
-    // A property to apply linear gradient
-    linearGradient: (value: string | number) => ({
-      backgroundImage: `linear-gradient(${value})`,
-    }),
-
     // An abbreviated property for border-radius
     br: (value: string | number) => ({
       borderRadius: value,
@@ -61,7 +50,7 @@ export const {
       title: '',
       text: '',
       shape: '',
-      background: '',
+      background: '#121214',
     },
     space: {
     },
@@ -74,9 +63,8 @@ export const {
       6: '5.4rem',
       7: '7.2rem',
     },
-
     fonts: {
-      primary: '',
+      Roboto: 'Roboto, sans-serif',
     },
     fontWeights: {},
     lineHeights: {
@@ -96,5 +84,31 @@ export const {
     shadows: {},
     zIndices: {},
     transitions: {},
+  },
+});
+
+export const ThemeProvider = styled('div', {});
+
+export const light = createTheme({
+  colors: {
+    blue: '#61DCFB',
+    green: '#04D361',
+    yellow: '#EBA417',
+    title: '#E1E1E6',
+    text: '#A8A8B3',
+    shape: '#1F2729',
+    background: '#121414',
+  },
+});
+
+export const dark = createTheme({
+  colors: {
+    blue: '#61DCFB',
+    green: '#04D361',
+    yellow: '#EBA417',
+    title: '#E1E1E6',
+    text: '#A8A8B3',
+    shape: '#1F2729',
+    background: '#121414',
   },
 });

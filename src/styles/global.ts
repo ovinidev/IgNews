@@ -14,9 +14,11 @@ export const globalStyles = globalCss({
   html: {
     fontSize: 10,
     scrollBehavior: 'smooth',
+    background: '$background',
   },
 
-  'body, input, textarea, button': {
+  'body, input, textarea, select, button': {
+    font: '400 1.6rem Roboto, sans-serif',
   },
 
   'h1, h2, h3, h4, h5, h6, strong': {
@@ -24,6 +26,11 @@ export const globalStyles = globalCss({
 
   button: {
     cursor: 'pointer',
+  },
+
+  a: {
+    color: 'inherit',
+    textDecoration: 'none',
   },
 
   disabled: {
