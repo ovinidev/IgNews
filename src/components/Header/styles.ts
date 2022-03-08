@@ -3,6 +3,7 @@ import { styled } from '../../styles/stitches.config';
 export const Container = styled('header', {
   height: '8rem',
   borderBottom: '1px solid #29292E',
+  background: '$background',
 });
 
 export const Content = styled('div', {

@@ -3,7 +3,7 @@ import { FiX } from 'react-icons/fi';
 import { Container } from './styles';
 
 export const SignIn = () => {
-  const userLogged = false;
+  const userLogged = true;
 
   return userLogged ? (
     <Container type="button">

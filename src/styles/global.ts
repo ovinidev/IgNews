@@ -14,7 +14,6 @@ export const globalStyles = globalCss({
   html: {
     fontSize: 10,
     scrollBehavior: 'smooth',
-    background: '$background',
   },
 
   'body, input, textarea, select, button': {
