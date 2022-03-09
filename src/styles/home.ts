@@ -1,4 +1,4 @@
-import { styled } from '../styles/stitches.config';
+import { styled } from './stitches.config';
 
 export const Container = styled('main', {
   display: 'flex',
@@ -14,19 +14,18 @@ export const Content = styled('section', {
   alignItems: 'center',
   justifyContent: 'space-between',
 
-  width: '110.6rem',
-  margin: '0 auto',
+  width: '100%',
+  maxWidth: '110.6rem',
 });
 
 export const TextContainer = styled('div', {
-  color: '$title',
   height: '41.8rem',
   width: '50.8rem',
 
   span: {
     fontSize: '$5',
     lineHeight: '3.4rem',
-    color: '$text',
+    color: '$title',
   },
 
   h1: {
@@ -34,6 +33,7 @@ export const TextContainer = styled('div', {
     fontWeight: 900,
     lineHeight: '7.2rem',
     margin: '4rem 0 2.4rem 0',
+    color: '$title',
 
     span: {
       fontSize: '$7',
@@ -46,6 +46,7 @@ export const TextContainer = styled('div', {
   p: {
     fontSize: '$5',
     marginBottom: '4rem',
+    color: '$title',
 
     span: {
       fontSize: '$5',

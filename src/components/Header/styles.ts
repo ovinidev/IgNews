@@ -10,8 +10,8 @@ export const Content = styled('div', {
   display: 'flex',
   alignItems: 'center',
 
-  maxWidth: '110.6rem',
   height: '8rem',
+  maxWidth: '110.6rem',
   margin: '0 auto',
 
   button: {

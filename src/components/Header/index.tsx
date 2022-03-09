@@ -19,7 +19,6 @@ export const Header = () => (
       </Nav>
 
       <SignIn />
-
     </Content>
   </Container>
 );
