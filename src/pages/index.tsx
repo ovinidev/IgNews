@@ -17,19 +17,31 @@ interface HomeProps {
   }
 }
 
-interface IUsers {
-  id: number,
-  name: 'string'
+interface IUser {
+  id: number
+  name: string
 }
 
 export default function Home({ product }: HomeProps) {
-  const [users, setUsers] = useState<IUsers[]>([]);
+  const [user, setUser] = useState<IUser[]>([]);
+  console.log('user', user);
 
   useEffect(() => {
     (async function getUser() {
       try {
         const { data } = await axiosInstance.get('users');
-        setUsers(data);
+        setUser(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }());
+  }, []);
+
+  useEffect(() => {
+    (async function getUser() {
+      try {
+        const { data } = await axiosInstance.get('teams');
+        console.log(data);
       } catch (err) {
         console.log(err);
       }
@@ -41,15 +53,15 @@ export default function Home({ product }: HomeProps) {
       <Head>
         <title>Home ig.News</title>
       </Head>
-
+      {user.map((item) => {
+        return (
+          <p>{item.name}</p>
+        );
+      })}
       <Content>
         <TextContainer>
+
           <span>👋 Hey, welcome</span>
-          {users.map((item) => {
-            return (
-              <span key={item.id}>{item.name}</span>
-            );
-          })}
           <h1>News about the <span>React</span> world.</h1>
           <p>
             Get access to all the publications <br />
