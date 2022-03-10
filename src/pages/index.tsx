@@ -1,9 +1,11 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable react/jsx-one-expression-per-line */
-import type { GetServerSideProps } from 'next';
+import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-import { stripe } from '../services/stripe';
+import { useEffect } from 'react';
+import { axiosInstance } from '../services/axiosInstance';
+import stripe from '../services/stripe';
 import {
   Container, Content, SubscribeButton, TextContainer,
 } from '../styles/home';
@@ -16,6 +18,17 @@ interface HomeProps {
 }
 
 export default function Home({ product }: HomeProps) {
+  useEffect(() => {
+    (async function getUser() {
+      try {
+        const { data } = await axiosInstance.get('users');
+        console.log(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }());
+  }, []);
+
   return (
     <Container>
       <Head>
@@ -44,7 +57,7 @@ export default function Home({ product }: HomeProps) {
 }
 
 // Always utility this function in pages and not in components
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const price = await stripe.prices.retrieve('price_1KbCrvC9t6FtgstyuOsTFarD');
 
   const priceAmount = price.unit_amount || 8;
@@ -61,5 +74,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       product,
     },
+    revalidate: 60 * 60 * 24, // 24 hours
   };
 };
