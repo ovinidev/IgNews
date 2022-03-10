@@ -3,7 +3,7 @@
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { axiosInstance } from '../services/axiosInstance';
 import stripe from '../services/stripe';
 import {
@@ -17,12 +17,19 @@ interface HomeProps {
   }
 }
 
+interface IUsers {
+  id: number,
+  name: 'string'
+}
+
 export default function Home({ product }: HomeProps) {
+  const [users, setUsers] = useState<IUsers[]>([]);
+
   useEffect(() => {
     (async function getUser() {
       try {
         const { data } = await axiosInstance.get('users');
-        console.log(data);
+        setUsers(data);
       } catch (err) {
         console.log(err);
       }
@@ -38,6 +45,11 @@ export default function Home({ product }: HomeProps) {
       <Content>
         <TextContainer>
           <span>👋 Hey, welcome</span>
+          {users.map((item) => {
+            return (
+              <span key={item.id}>{item.name}</span>
+            );
+          })}
           <h1>News about the <span>React</span> world.</h1>
           <p>
             Get access to all the publications <br />
