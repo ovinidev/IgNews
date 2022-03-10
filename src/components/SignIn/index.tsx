@@ -1,18 +1,19 @@
 import { FaGithub } from 'react-icons/fa';
 import { FiX } from 'react-icons/fi';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { Container } from './styles';
 
 export const SignIn = () => {
-  const userLogged = true;
+  const { data: session } = useSession();
 
-  return userLogged ? (
-    <Container type="button">
+  return session ? (
+    <Container type="button" onClick={() => signOut()}>
       <FaGithub color="#04D361" />
-      tiagoluchtenberg
+      {session.user?.name}
       <FiX />
     </Container>
   ) : (
-    <Container type="button">
+    <Container type="button" onClick={() => signIn('github')}>
       <FaGithub color="#EBA417" />
       Sign in with GitHub
     </Container>

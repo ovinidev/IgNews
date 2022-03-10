@@ -12,12 +12,14 @@
     "@stitches/react": "^1.2.7",
     "axios": "^0.26.1",
     "next": "12.1.0",
+    "next-auth": "^4.2.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.3.1",
     "stripe": "^8.207.0"
   },
   "devDependencies": {
+    "@types/next-auth": "^3.15.0",
     "@types/node": "17.0.21",
     "@types/react": "17.0.39",
     "@typescript-eslint/eslint-plugin": "^5.13.0",

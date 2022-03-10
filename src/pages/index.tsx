@@ -1,10 +1,9 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable react/jsx-one-expression-per-line */
 import type { GetStaticProps } from 'next';
+import { useSession } from 'next-auth/react';
 import Head from 'next/head';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { axiosInstance } from '../services/axiosInstance';
 import stripe from '../services/stripe';
 import {
   Container, Content, SubscribeButton, TextContainer,
@@ -17,51 +16,18 @@ interface HomeProps {
   }
 }
 
-interface IUser {
-  id: number
-  name: string
-}
-
 export default function Home({ product }: HomeProps) {
-  const [user, setUser] = useState<IUser[]>([]);
-  console.log('user', user);
-
-  useEffect(() => {
-    (async function getUser() {
-      try {
-        const { data } = await axiosInstance.get('users');
-        setUser(data);
-      } catch (err) {
-        console.log(err);
-      }
-    }());
-  }, []);
-
-  useEffect(() => {
-    (async function getUser() {
-      try {
-        const { data } = await axiosInstance.get('teams');
-        console.log(data);
-      } catch (err) {
-        console.log(err);
-      }
-    }());
-  }, []);
+  const { data: session } = useSession();
 
   return (
     <Container>
       <Head>
         <title>Home ig.News</title>
       </Head>
-      {user.map((item) => {
-        return (
-          <p>{item.name}</p>
-        );
-      })}
+
       <Content>
         <TextContainer>
-
-          <span>👋 Hey, welcome</span>
+          <span>👋 Hey {session?.user?.name}, welcome</span>
           <h1>News about the <span>React</span> world.</h1>
           <p>
             Get access to all the publications <br />
