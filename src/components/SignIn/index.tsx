@@ -4,12 +4,12 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import { Container } from './styles';
 
 export const SignIn = () => {
-  const { data: session } = useSession();
+  const { data } = useSession();
 
-  return session ? (
+  return data ? (
     <Container type="button" onClick={() => signOut()}>
       <FaGithub color="#04D361" />
-      {session.user?.name}
+      {data.user?.name}
       <FiX />
     </Container>
   ) : (
