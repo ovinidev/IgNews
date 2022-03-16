@@ -4,6 +4,8 @@ import type { GetStaticProps } from 'next';
 import { useSession } from 'next-auth/react';
 import Head from 'next/head';
 import Image from 'next/image';
+import { useEffect } from 'react';
+import { axiosInstance } from '../services/axiosInstance';
 import stripe from '../services/stripe';
 import {
   Container, Content, SubscribeButton, TextContainer,
@@ -18,6 +20,16 @@ interface HomeProps {
 
 export default function Home({ product }: HomeProps) {
   const { data: session } = useSession();
+
+  useEffect(() => {
+    (async function getUsers() {
+      try {
+        const { data } = await axiosInstance.get('users');
+      } catch (err) {
+        console.log(err);
+      }
+    }());
+  }, []);
 
   return (
     <Container>
