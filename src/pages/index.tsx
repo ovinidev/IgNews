@@ -1,10 +1,14 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-useless-return */
 /* eslint-disable arrow-body-style */
 /* eslint-disable react/jsx-one-expression-per-line */
 import type { GetStaticProps } from 'next';
-import { useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import Image from 'next/image';
+import { axiosInstance } from '../services/axiosInstance';
 import stripe from '../services/stripe';
+import { getStripeJs } from '../services/stripe-js';
 import {
   Container, Content, SubscribeButton, TextContainer,
 } from '../styles/home';
@@ -18,6 +22,24 @@ interface HomeProps {
 
 export default function Home({ product }: HomeProps) {
   const { data: session } = useSession();
+
+  const handleSubscribe = async () => {
+    if (!session) {
+      signIn('github');
+      return;
+    }
+    try {
+      const response = await axiosInstance.post('subscribe');
+
+      const { sessionId } = response.data;
+
+      const stripe = await getStripeJs();
+
+      await stripe?.redirectToCheckout({ sessionId });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Container>
@@ -33,7 +55,9 @@ export default function Home({ product }: HomeProps) {
             Get access to all the publications <br />
             <span>for {product.amount} month</span>
           </p>
-          <SubscribeButton type="button">Subscribe now</SubscribeButton>
+          <SubscribeButton type="button" onClick={handleSubscribe}>
+            Subscribe now
+          </SubscribeButton>
         </TextContainer>
         <Image
           src="/avatar.svg"

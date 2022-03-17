@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@stitches/react": "^1.2.7",
+    "@stripe/stripe-js": "^1.24.0",
     "axios": "^0.26.1",
     "faunadb": "^4.5.2",
     "next": "12.1.0",
