@@ -19,7 +19,7 @@ export const Header = () => (
 
       <Nav>
         <Item href="/" selected>Home</Item>
-        <Item href="/">Posts</Item>
+        <Item href="/posts">Posts</Item>
       </Nav>
 
       <SignIn />

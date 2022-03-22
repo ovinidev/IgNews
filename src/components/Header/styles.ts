@@ -21,6 +21,7 @@ export const Content = styled('div', {
   img: {
     cursor: 'pointer',
   },
+
 });
 
 export const Item = styled('a', {
