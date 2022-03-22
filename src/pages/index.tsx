@@ -30,12 +30,10 @@ export default function Home({ product }: HomeProps) {
     }
     try {
       const response = await axiosInstance.post('subscribe');
-      console.log('stripe');
 
       const { sessionId } = response.data;
 
       const stripe = await getStripeJs();
-      console.log(stripe);
 
       await stripe?.redirectToCheckout({ sessionId });
     } catch (err) {
