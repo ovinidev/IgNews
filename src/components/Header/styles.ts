@@ -17,6 +17,10 @@ export const Content = styled('div', {
   button: {
     marginLeft: 'auto',
   },
+
+  img: {
+    cursor: 'pointer',
+  },
 });
 
 export const Item = styled('a', {
