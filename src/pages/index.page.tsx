@@ -11,7 +11,7 @@ import stripe from '../services/stripe';
 import { getStripeJs } from '../services/stripe-js';
 import {
   Container, Content, SubscribeButton, TextContainer,
-} from '../styles/home';
+} from './page';
 
 interface HomeProps {
   product: {

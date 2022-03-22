@@ -1,70 +1,47 @@
+/* eslint-disable arrow-body-style */
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Prismic from '@prismicio/client';
+import { RichText } from 'prismic-dom';
 import { getPrismicClient } from '../../services/prismic';
 import {
   Container, PostContainer, Time, Title, Content,
 } from './page';
 
-export default function Posts() {
+type Post = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  updatedAt: string;
+}
+
+interface PostsProps {
+  posts: Post[]
+}
+
+interface IPosts {
+  uid: string
+  title: string
+  content: any[]
+  last_publication_date: Date
+}
+
+export default function Posts({ posts }: PostsProps) {
   return (
     <Container>
       <Head>
         <title>Posts</title>
       </Head>
 
-      <PostContainer href="/">
-        <Time>12 de março de 2021</Time>
-        <Title>Creating a Monorepo with Lerna & Yarn Workspaces</Title>
-        <Content>
-          In this guide, you will learn how to create a Monorepo
-          to manage multiple packages with a shared build, test, and
-          release process.
-          In this guide, you will learn how to create a Monorepo
-          to manage multiple packages with a shared build, test, and
-          release process.
-        </Content>
-      </PostContainer>
-
-      <PostContainer href="/">
-        <Time>12 de março de 2021</Time>
-        <Title>Creating a Monorepo with Lerna & Yarn Workspaces</Title>
-        <Content>
-          In this guide, you will learn how to create a Monorepo
-          to manage multiple packages with a shared build, test, and
-          release process.
-        </Content>
-      </PostContainer>
-
-      <PostContainer href="/">
-        <Time>12 de março de 2021</Time>
-        <Title>Creating a Monorepo with Lerna & Yarn Workspaces</Title>
-        <Content>
-          In this guide, you will learn how to create a Monorepo
-          to manage multiple packages with a shared build, test, and
-          release process.
-        </Content>
-      </PostContainer>
-
-      <PostContainer href="/">
-        <Time>12 de março de 2021</Time>
-        <Title>Creating a Monorepo with Lerna & Yarn Workspaces</Title>
-        <Content>
-          In this guide, you will learn how to create a Monorepo
-          to manage multiple packages with a shared build, test, and
-          release process.
-        </Content>
-      </PostContainer>
-
-      <PostContainer href="/">
-        <Time>12 de março de 2021</Time>
-        <Title>Creating a Monorepo with Lerna & Yarn Workspaces</Title>
-        <Content>
-          In this guide, you will learn how to create a Monorepo
-          to manage multiple packages with a shared build, test, and
-          release process.
-        </Content>
-      </PostContainer>
+      {posts.map((post) => {
+        return (
+          <PostContainer href="/" key={post.slug}>
+            <Time>{post.updatedAt}</Time>
+            <Title>{post.title}</Title>
+            <Content>{post.excerpt}</Content>
+          </PostContainer>
+        );
+      })}
 
     </Container>
   );
@@ -73,17 +50,31 @@ export default function Posts() {
 export const getStaticProps: GetStaticProps = async () => {
   const prismicInstance = getPrismicClient();
 
-  const response = await prismicInstance.query([
+  const response = await prismicInstance.query<IPosts>([
     Prismic.Predicates.at('document.type', 'publication'),
   ], {
     fetch: ['publication.title', 'publication.content'],
     pageSize: 100,
   });
 
-  console.log(response);
+  // console.log(JSON.stringify(response, null, 2));
+
+  const posts = response.results.map((post) => {
+    return {
+      slug: post.uid,
+      title: RichText.asText(post.data.title),
+      excerpt: post.data.content.find((content) => content.type === 'paragraph')?.text ?? '',
+      updatedAt: new Date(post.last_publication_date!).toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+      }),
+    };
+  });
 
   return {
     props: {
+      posts,
     },
   };
 };
