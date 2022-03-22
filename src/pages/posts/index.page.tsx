@@ -4,7 +4,7 @@ import Prismic from '@prismicio/client';
 import { getPrismicClient } from '../../services/prismic';
 import {
   Container, PostContainer, Time, Title, Content,
-} from './styles';
+} from './page';
 
 export default function Posts() {
   return (

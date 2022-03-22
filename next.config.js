@@ -5,5 +5,5 @@ const nextConfig = {
 
 module.exports = {
   nextConfig,
-  pageExtensions: ['index.tsx', 'styled.ts'],
+  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
 };
