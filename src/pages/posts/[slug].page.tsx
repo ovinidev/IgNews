@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
 import Head from 'next/head';
@@ -32,11 +33,22 @@ export default function Post({ post }: PostProps) {
   );
 }
 
+/*
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [
+      { params: { slug: '' } },
+    ],
+    fallback: 'blocking',
+  };
+};
+*/
+
 export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
   const session = await getSession({ req });
   const { slug } = params!;
 
-  if (session!.activeSubscription === 'canceled') {
+  if (!session) {
     return {
       redirect: {
         destination: '/',
