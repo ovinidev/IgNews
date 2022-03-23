@@ -23,6 +23,7 @@ Tecnologias utilizada no projeto:
 * Utilização do stripe para gerenciar os pagamentos das assinaturas
 * Guardando os usuários no banco de dados FaunaDB
 * Prismic, CMS utilizado para a criação dos posts
+* Stitches para fazer a estilização
   
 ## 🔍 Layout
 
@@ -38,9 +39,9 @@ Agora você pode acessar [`localhost:3000`](http://localhost:3000) do seu navega
   
 ## Resultado final:
 <p align="center">
-<img  src="https://i.imgur.com/1qYR4O9.png" alt="imagem" width=900px> <br>
-<img  src="https://i.imgur.com/0quPwiK.png" alt="imagem" width=900px> <br>
-<img  src="https://i.imgur.com/eQh0tqT.png" alt="imagem" width=900px> <br>
+<img  src="https://i.imgur.com/FHMY1F5.png" alt="imagem" width=900px> <br>
+<img  src="https://i.imgur.com/emU0w1s.png" alt="imagem" width=900px> <br>
+<img  src="https://i.imgur.com/jeCRmaN.png" alt="imagem" width=900px> <br>
 
 <div>
   <img align="left" src="https://i.imgur.com/b5ORqyx.png" width=35 alt="Profile"/>
