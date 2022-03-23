@@ -20,7 +20,7 @@ interface PostsProps {
   posts: Post[]
 }
 
-export interface IPosts {
+interface IPosts {
   uid: string
   title: string
   content: any[]

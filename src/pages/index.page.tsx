@@ -6,6 +6,7 @@ import type { GetStaticProps } from 'next';
 import { signIn, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { axiosInstance } from '../services/axiosInstance';
 import stripe from '../services/stripe';
 import { getStripeJs } from '../services/stripe-js';
@@ -22,10 +23,16 @@ interface HomeProps {
 
 export default function Home({ product }: HomeProps) {
   const { data: session } = useSession();
+  const router = useRouter();
 
   const handleSubscribe = async () => {
     if (!session) {
       signIn('github');
+      return;
+    }
+
+    if (session.activeSubscription) {
+      router.push('/posts');
       return;
     }
     try {

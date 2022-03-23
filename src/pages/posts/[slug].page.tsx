@@ -1,8 +1,11 @@
 import { GetServerSideProps } from 'next';
-// import { getSession } from 'next-auth/react';
+import { getSession } from 'next-auth/react';
 import Head from 'next/head';
 import { RichText } from 'prismic-dom';
 import { getPrismicClient } from '../../services/prismic';
+import {
+  Container, PostContent, Title, Time, Article,
+} from './page';
 
 interface PostProps {
   post: {
@@ -15,27 +18,32 @@ interface PostProps {
 
 export default function Post({ post }: PostProps) {
   return (
-    <>
+    <Container>
       <Head>
         <title>{post.title}</title>
       </Head>
 
-      <main>
-        <article>
-          <h1>{post.title}</h1>
-        </article>
-      </main>
-    </>
+      <PostContent>
+        <Title size="large">{post.title}</Title>
+        <Time>{post.updatedAt}</Time>
+        <Article dangerouslySetInnerHTML={{ __html: post.content }} />
+      </PostContent>
+    </Container>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
-  // const session = await getSession({ req });
+  const session = await getSession({ req });
   const { slug } = params!;
 
-  // if (!session) {
-
-  // }
+  if (session!.activeSubscription === 'canceled') {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
 
   const prismic = getPrismicClient(req);
 
