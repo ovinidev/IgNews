@@ -8,12 +8,13 @@ export const Container = styled('main', {
   flexDirection: 'column',
 });
 
-export const PostContainer = styled('a', {
+export const PostContainer = styled('section', {
   maxWidth: '72.8rem',
   display: 'flex',
   alignItems: 'flex-start',
   justifyContent: 'flex-start',
   flexDirection: 'column',
+  cursor: 'pointer',
 
   '&:first-child': {
     marginTop: '8rem',

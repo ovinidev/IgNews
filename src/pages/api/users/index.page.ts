@@ -8,5 +8,10 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     { id: 4, name: 'gustavo' },
   ];
 
+  if (req.method === 'POST') {
+    console.log('utilizou o metodo post');
+    return res.status(200).json('caiu num post');
+  }
+
   return res.status(200).json(users);
 };

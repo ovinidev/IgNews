@@ -22,6 +22,10 @@ export const Content = styled('div', {
     cursor: 'pointer',
   },
 
+  a: {
+    cursor: 'pointer',
+  },
+
 });
 
 export const Item = styled('a', {
